@@ -1,0 +1,7 @@
+# Heater
+
+This program reads temperatures from a temperature sensor and given a certain threshold, turns on and off a heater using Curl
+
+compile with:
+
+g++ heat.cpp -lwiringPi -o heat
