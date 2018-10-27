@@ -7,9 +7,6 @@
 #include<curl/curl.h>
 #include<string>
 
-#define pos 4
-#define sig 8
-
 bool sendCommand(bool command)
 {
   CURL *curl;
@@ -18,15 +15,15 @@ bool sendCommand(bool command)
   std::string on =  "https://maker.ifttt.com/trigger/heater_on/with/key/iuqTik_MlP-QhXazswBCAHrk7_dHrA8-s49EO3lIV2V";
   std::string off = "https://maker.ifttt.com/trigger/heater_off/with/key/iuqTik_MlP-QhXazswBCAHrk7_dHrA8-s49EO3lIV2V";
   std::string cmd = (command) ? on : off;
-  
+
   if (curl)
   {
       curl_easy_setopt(curl, CURLOPT_URL, cmd.c_str());
       res = curl_easy_perform(curl);
       if (res != CURLE_OK)
-	{
-	  printf("error...%i \n",res);
-	}
+  	{
+  	  printf("error...%i \n",res);
+  	}
   }
   curl_easy_cleanup(curl);
 }
@@ -93,7 +90,7 @@ uint32_t read(void)
 	data[j/8] |= 1;
       j++;
     }
-  } 
+  }
   for (int i = 0; i < 5; i++)
     {
       printf("%d ",data[i]);
@@ -101,7 +98,7 @@ uint32_t read(void)
 }
 
 int main(int argc, char** argv)
-{  
+{
   wiringPiSetup();
   uint32_t temp;
   bool state;
@@ -112,10 +109,10 @@ int main(int argc, char** argv)
 	sendCommand(!state);
 	state = false;
       } else {
-	
+
       }
       printf("state: %d",temp);
-      usleep(2000);      
+      usleep(2000);
     }
   return 0;
 }
